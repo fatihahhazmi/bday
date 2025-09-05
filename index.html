@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maklum balas RUU Gig</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 0;
+    background: #f0f0f0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    width: 350px;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 10;
+  }
+
+  .card h1 { margin: 10px 0; }
+  .card p { margin: 10px 0 20px; }
+  .card img { width: 200px; border-radius: 15px; margin-bottom: 20px; }
+
+  .card button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #ff4081;
+    color: white;
+  }
+
+  .emoji {
+    position: fixed;
+    bottom: 0;
+    pointer-events: none;
+    animation: fly linear forwards;
+  }
+
+  @keyframes fly {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card" id="card">
+  <h1>Soalan 1</h1>
+  <p>Tahukah anda bahawa sambungan synaptic yang positif dalam otak membolehkan kita menjadi rajin. Adakah anda bersetuju maklumat yang dihadam memainkan peranan besar dalam pembentukan perspektif seseorang?</p>
+  <div>
+    <button onclick="showBirthday()">Yes</button>
+    <button onclick="showBirthday()">No</button>
+  </div>
+</div>
+
+<script>
+  const emojis = ['🎉','🥳','🎊','🍀','🎁','🎀','🎈'];
+
+  function showBirthday() {
+    const card = document.getElementById('card');
+
+    // Replace content with birthday message + GIF
+    card.innerHTML = `
+      <h1>Happy Birthday Farah! 🥳</h1>
+      <p>Semoga tercapai impian dan panjang umur wohoo</p>
+      <img src="https://media.tenor.com/LOh2V9FWAugAAAAi/cute-kawaii.gif
+    " alt="Birthday GIF">
+    `;
+
+    // Emoji flying from bottom to top
+    setInterval(() => {
+      const emoji = document.createElement('div');
+      emoji.classList.add('emoji');
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+      // Random horizontal position
+      emoji.style.left = Math.random() * window.innerWidth + 'px';
+      // Random size
+      emoji.style.fontSize = (20 + Math.random() * 40) + 'px';
+      // Random speed
+      emoji.style.animationDuration = (3 + Math.random() * 4) + 's';
+
+      document.body.appendChild(emoji);
+
+      // Remove emoji after animation
+      setTimeout(() => {
+        emoji.remove();
+      }, 7000);
+    }, 250); // spawn emoji every 250ms
+  }
+</script>
+
+</body>
+</html>
